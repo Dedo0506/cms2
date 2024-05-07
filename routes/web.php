@@ -21,3 +21,4 @@ Route::get('/', function () {
 
 Route::resource('/categorias', CategoriasController::class);
 Route::resource('/etiquetas', EtiquetasController::class);
+Route::resource('/posts', PostController::class);

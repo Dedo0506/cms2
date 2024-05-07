@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,8 +22,8 @@
         </style>
     </head>
 
-    <body class="">
-    <div class="container-fluid mt--7">
+    <body>
+         <div class="container-fluid mt--7">
             <div class="card bg-secondary shadow">
 
                     @if(Session::has('Mensaje'))
@@ -34,7 +34,7 @@
                     @endif
 
                 <div class="col-xs-12 col-md-6 col-lg-4">
-                    <a href="{{url('categorias/create')}}" class="btn btn-info"> Agregar una nueva categoria </a>
+                    <a href="{{url('etiquetas/create')}}" class="btn btn-info"> Agregar una nueva etiqueta </a>
                 </div>
 
                     <table id="categorias">
@@ -49,33 +49,31 @@
                         </thead>
                         <tbody class="list">
 
-                            @foreach ($categorias as $categorias)
+                            <!--TODO mostrar todos los elementos-->
+                            @foreach ($etiqueta as $etiqueta)
                                 <tr>
                                     <td>
-                                        {{$categorias->NombreCategoria}}
+                                        {{$etiqueta->nombreEtiqueta}}
                                     </td>
                                     <td>
-                                        {{$categorias->Descripcion}}
+                                        {{$etiqueta->descripcion}}
                                     </td>
                                     <td>
-                                        {{$categorias->FechaCreacion}}
+                                        {{$etiqueta->fechaCreacion}}
                                     </td>
                                     <td>
-                                        {{$categorias->UsuarioCreador}}
+                                        {{$etiqueta->usuarioCreador}}
                                     </td>
                                     <td>
-                                        <a class="btn btn-secondary btn-sm" href="{{url('/categorias/'.$categorias->id.'/edit')}}"> Editar </a>
-                                        <form method="post" action="{{url('/categorias/'.$categorias->id)}}">
+                                        <a class="btn btn-secondary btn-sm" href="{{url('/etiquetas/'.$etiqueta->id.'/edit')}}"> Editar </a>
+                                        <form method="post" action="{{url('/etiquetas/'.$etiqueta->id)}}">
                                             {{csrf_field()}}
                                             {{method_field('Delete')}}
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro deseas borrar?');"> Borrar </button>
                                         </form>
                                     </td>
-
-
                                 </tr>
                             @endforeach
-
 
                         </tbody>
 
@@ -85,6 +83,5 @@
             </div>
         </div>
     </body>
+
 </html>
-
-

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\EtiquetasModel;
+use Illuminate\Support\Facades\DB;
 
 class EtiquetasController extends Controller
 {
@@ -14,6 +16,8 @@ class EtiquetasController extends Controller
     public function index()
     {
         //
+        $etiqueta = DB::SELECT("SELECT * FROM etiquetas");
+        return view('Etiquetas.index', array('etiqueta'=>$etiqueta));
     }
 
     /**
@@ -24,6 +28,7 @@ class EtiquetasController extends Controller
     public function create()
     {
         //
+        return view('Etiquetas.create');
     }
 
     /**
@@ -35,6 +40,15 @@ class EtiquetasController extends Controller
     public function store(Request $request)
     {
         //
+        $etiqueta = new EtiquetasModel(); //Creamos la variable que tenga el modelo de etiqueta.
+
+        $etiqueta->nombreEtiqueta = $request["nombreEtiqueta"]; //TODO revisar si esto hace referencia al DOM
+        $etiqueta->descripcion =  $request["descripcion"];
+        $etiqueta->fechaCreacion =  date("Y-m-d H:i:s");
+        $etiqueta->UsuarioCreador = "Sebas";
+
+        $etiqueta->save();      //Guardamos el registro.
+
     }
 
     /**
@@ -57,6 +71,8 @@ class EtiquetasController extends Controller
     public function edit($id)
     {
         //
+        $etiquetasReg = EtiquetasModel::findOrFail($id);
+        return view('Etiquetas.edit', compact('etiquetasReg'));
     }
 
     /**
@@ -69,6 +85,9 @@ class EtiquetasController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $etiquetasRequest =  request()->except(['_token', '_method']);
+        EtiquetasModel::where('id', '=', $id)->update($etiquetasRequest);
+        return redirect('etiquetas')->with('Mensaje', 'Actualización realizada al registro');
     }
 
     /**
@@ -80,5 +99,7 @@ class EtiquetasController extends Controller
     public function destroy($id)
     {
         //
+        EtiquetasModel::destroy($id);
+        return redirect('etiquetas')->with('Mensaje', 'Registro eliminado');
     }
 }
