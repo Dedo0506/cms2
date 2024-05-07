@@ -9,15 +9,15 @@ class PostModel extends Model
 {
     use HasFactory;
     protected $table = 'posts';     //Variable con la que se enlaza con la DB
-    public timestamp = true;
+    public $timestamp = true;
 
     public function categorias() {
-        return $this->hasOne(CategoriasModel::class);
+        return $this->belongsTo(CategoriasModel::class, 'id_Categoria');
     }
 
 
     public function etiquetas() {
-        return $this->hasOne(EtiquetasModel::class);
+        return $this->belongsTo(EtiquetasModel::class, 'id_Etiqueta');
     }
 
 }
