@@ -12,7 +12,7 @@ class CategoriasModel extends Model
     public $timestamp = true;
 
     public function posts () {
-        return $this->hasMany(PostModel::class);
+        return $this->hasOne(PostModel::class, 'id');
     }
 
 }

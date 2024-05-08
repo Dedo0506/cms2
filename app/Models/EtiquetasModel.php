@@ -14,7 +14,7 @@ class EtiquetasModel extends Model
 
     //Relación de tablas
     public function posts() {
-        return $this->hasMany(PostModel::class);
+        return $this->hasOne(PostModel::class, 'id');
     }
 
 }

@@ -24,16 +24,15 @@ class Post extends Migration
             $table->date("FechaPublicacion");
             $table->date("FechaCreacion");          //Preguntar si se puede con el timestamp
             $table->boolean("Estatus");
-            $table->integer("id_Categoria");
-            $table->integer("id_Etiqueta");
+            $table->bigInteger("id_Categoria")->unsigned();
+            $table->bigInteger("id_Etiqueta")->unsigned();
 
 
             //Constraints
-            $table->foreign("id_Categoria")->references("id")->on("categories");
-            $table->foreign("id_Etiqueta")->references("id")->on("etiquetas");
+            $table->foreign('id_Categoria')->references('id')->on('categories');
+            $table->foreign('id_Etiqueta')->references('id')->on('etiquetas');
 
         }); 
-
     }
 
     /**
