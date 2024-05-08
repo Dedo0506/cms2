@@ -26,6 +26,8 @@ class Post extends Migration
             $table->boolean("Estatus");
             $table->bigInteger("id_Categoria")->unsigned();
             $table->bigInteger("id_Etiqueta")->unsigned();
+            //Timestamps
+            $table->timestamps();
 
 
             //Constraints

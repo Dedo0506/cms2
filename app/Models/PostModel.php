@@ -11,6 +11,12 @@ class PostModel extends Model
     protected $table = 'posts';     //Variable con la que se enlaza con la DB
     public $timestamp = true;
 
+    protected $fillable = [
+        'PostContenido',
+        'id_Categoria',
+        'id_Etiqueta',
+//        '_token', // Agregar el campo _token al array fillable
+    ];
     public function categorias() {
         return $this->belongsTo(CategoriasModel::class, 'id_Categoria');
     }

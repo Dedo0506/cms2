@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\EtiquetasController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
