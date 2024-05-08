@@ -30,13 +30,13 @@ class PostController extends Controller
         $post->id_Categoria = $request->input("categoria");
         $post->id_Etiqueta = $request->input("etiqueta");
         $post->fechaCreacion =  date("Y-m-d H:i:s");
-        $post->PostImagen = "img/imagen";
+        $post->PostImagen = "img/imagen.png";
         $post->fechaPublicacion = $request->input("fechaPublicacion");
         $post->Estatus = 1;
 
         $post->save();
 
-        return redirect()->route('posts.edit', $post->id);
+        return redirect()->route('posts.index')->with('Mensaje', 'Registro creado');
     }
 
     public function show(PostModel $post){
@@ -45,27 +45,28 @@ class PostController extends Controller
 
     public function edit(PostModel $post)
     {
-        $categorias = CategoriasModel::pluck('name', 'id');
+        $categorias = CategoriasModel::all();
         $etiquetas = EtiquetasModel::all();
         return view('posts.edit', compact ('post', 'categorias', 'etiquetas'));
     }
 
-    public function categoria(CategoriasModel $categoria){
-        $posts = PostModel::where('id_Categoria', $categoria->id)
-                    ->where ('status', 2)
-                    ->latest('id')
-                    ->paginate(4);
-
-        return view('posts.categoria', compact('posts', 'categoria'));
+    public function update(Request $request, $id)
+    {
+        //
+        $postsRequest =  request()->except(['_token', '_method']);
+        PostModel::where('id', '=', $id)->update($postsRequest);
+        return redirect('posts')->with('Mensaje', 'Actualización realizada al registro');
+    }
+ 
+    public function destroy($id)
+    {
+        //
+        PostModel::destroy($id);
+        return redirect('posts')->with('Mensaje', 'Registro eliminado');
     }
 
-
-    public function tag(EtiquetasModel $tag){
-        $posts = $tag->posts()->where('tag_id', $tag->id)
-                    ->where ('status', 2)
-                    ->latest('id')
-                    ->paginate(4);
-
-        return view('posts.tag', compact('posts', 'tag'));
+    public function welcome(){
+        $posts = PostModel::latest('id')->paginate(10);
+        return view('welcome', compact('posts'));
     }
 }

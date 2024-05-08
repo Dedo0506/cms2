@@ -2,29 +2,31 @@
 
 @section('title', 'Post crear')
 
+@section('accion', 'Crear')
+
 @section('content')
-<h1>Formulario de etiquetas</h1>
 
-
-<div class="formulario categorias">
-    <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
+<div class="container mt-5">
+    <form class="row g-3 my-5" action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div id="PostContenido">
-            <label for="PostContenido">Contenido del post</label>
-            <textarea type="text" name="PostContenido" id="PostContenido"></textarea>
+        <div class="col-12" id="PostContenido">
+            <label for="PostContenido" class="form-label">Contenido del post</label>
+            <textarea type="text" class="form-control" name="PostContenido" id="PostContenido"></textarea>
         </div>
-        <div id="categoria">
-            <select name="categoria">
+        <div id="categoria" class="col-md-6">
+            <label for="id_categoria" class="form-label">Categoria: </label>
+            <select name="categoria" class="form-select">
                 @foreach ($categorias as $categoria)
                     <option value="{{ $categoria->id }}">{{ $categoria->NombreCategoria }}</option>
                 @endforeach
             </select>
         </div>
 
-        <div id="etiqueta">
-            <select name="etiqueta"> 
+        <div id="etiqueta" class="col-md-6">
+            <label for="id_etiqueta" class="form-label">Etiqueta: </label>
+            <select name="etiqueta" class="form-select"> 
                 @foreach ($etiquetas as $etiqueta)
-                    <option value="{{ $etiqueta->id }}">{{ $etiqueta->nombreEiqueta }}</option>
+                    <option value="{{ $etiqueta->id }}">{{ $etiqueta->nombreEtiqueta }}</option>
                 @endforeach
             </select>
         </div>            
@@ -33,18 +35,21 @@
             <input type="date" id="fechaPublicacion" name="fechaPublicacion">
         </div>        
 
-        <div>
-            <button class="btn btn-primary" href="{{url('posts.index')}}">Registrar</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt- 5">
+            <div>
+                <button class="btn btn-primary" href="{{url('posts')}}">Registrar</button>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <a class="btn btn-secondary" href="{{url('posts')}}">Regresar</a>
+            </div>
         </div>
-
     </form>
 
+   
 
 </div>
 
-<!--Botón para regresar a la pantalla anterior-->
-<div class="col-xs-12 col-md-6 col-lg-4">
-    <a class="btn btn-secondary" href="{{url('posts')}}">Regresar</a>
-</div>
+
+
 @stop
 

@@ -16,9 +16,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class, 'welcome'])->name('welcome');
 
 Route::resource('/categorias', CategoriasController::class);
 Route::resource('/etiquetas', EtiquetasController::class);
