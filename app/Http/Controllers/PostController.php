@@ -67,6 +67,6 @@ class PostController extends Controller
 
     public function welcome(){
         $posts = PostModel::latest('id')->paginate(10);
-        return view('welcome', compact('posts'));
+        return view('welcome', compact('posts'))->with('Mensaje', 'Registro eliminado');;
     }
 }
