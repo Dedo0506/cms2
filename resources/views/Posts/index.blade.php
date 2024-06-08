@@ -2,7 +2,9 @@
 
 @section('title', 'Post index')
 
-@section('accion', 'Lista')
+@section('accion', 'Listado de')
+
+@section('palabra', 'posts')
 
 @section('content')
     <div >

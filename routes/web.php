@@ -49,3 +49,4 @@ Route::get('/listarUsuarios',function () { return view('listaU'); });
 
 Route::resource('/categorias', CategoriasController::class);
 Route::resource('/etiquetas', EtiquetasController::class);
+Route::resource('/posts', PostController::class);

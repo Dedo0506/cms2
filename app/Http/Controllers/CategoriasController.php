@@ -47,6 +47,7 @@ class CategoriasController extends Controller
         $categorias->FechaCreacion =  date("Y-m-d H:i:s");
         $categorias->UsuarioCreador = "Sebas";
         $categorias->save();
+        return redirect()->route('categorias.index')->with('Mensaje', 'Registro creado');
     }
 
     /**
