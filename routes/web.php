@@ -44,6 +44,7 @@ Route::get('/', function () {
 });
 Route::get('/listarC',function () { return view('listaC'); });
 Route::get('/listarEstudiantes',function () { return view('listaEstudiantes'); });
+Route::get('/listarUsuarios',function () { return view('listaU'); });
 
 Route::resource('/categorias', CategoriasController::class);
 Route::resource('/etiquetas', EtiquetasController::class);
