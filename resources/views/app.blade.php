@@ -48,7 +48,7 @@
 <body>
     <div class="navbar-nav">
         <nav>
-            <h1>@yield('accion') Posts</h1>
+            <h1>Lista de @yield('accion')</h1>
         </nav>
     </div>
 
