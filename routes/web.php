@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\EtiquetasController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AutoresController;  
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,6 @@ Route::get('/listarUsuarios',function () { return view('listaU'); });
 
 Route::resource('/categorias', CategoriasController::class);
 Route::resource('/etiquetas', EtiquetasController::class);
-Route::resource('/posts', PostController::class);
+Route::resource('/posts', PostController::class); 
+Route::resource('/autor', AutoresController::class); 
+
