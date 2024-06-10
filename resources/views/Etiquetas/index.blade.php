@@ -31,7 +31,7 @@
                 <tbody class="list">
 
                     <!--TODO mostrar todos los elementos-->
-                    @foreach ($etiqueta as $etiqueta)
+                    @foreach ($etiquetas as $etiqueta)
                         <tr>
                             <td>
                                 {{ $etiqueta->nombreEtiqueta }}
@@ -62,7 +62,9 @@
                 </tbody>
 
             </table>
-
+            <div class="d-flex justify-content-center">
+                {{ $etiquetas->links('pagination.bootstrap-5') }}
+            </div>
 
         </div>
     </div>

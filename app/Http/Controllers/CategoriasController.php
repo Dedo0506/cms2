@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CategoriasModel;
-use Illuminate\Support\Facades\DB;  //Esta biblioteca permite hacer consultas a una tabla de base de datos en particular
-
+use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class CategoriasController extends Controller
 {
+    use WithPagination;
+    protected $paginationTheme = "bootstrap";
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +19,8 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        //
-        $categorias = DB::SELECT("SELECT * FROM categories");   //Asignamos a la variable categorias los registros de la base de datos llamada categories.
-        return view('Categories.index', array('categorias'=>$categorias)); //Mandamos un arreglo con la variable categorias a la vista.
+        $categorias = CategoriasModel::latest('id')->paginate(5); // Asignamos a la variable categorias los registros de la base de datos llamada categories.
+        return view('Categories.index', compact('categorias')); // Mandamos un arreglo con la variable categorias a la vista.
     }
 
     /**
@@ -28,7 +30,6 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        //
         return view('Categories.create');
     }
 
@@ -40,7 +41,7 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //Guardamos la informacion de del formulario
+        // Guardamos la informacion del formulario
         $categorias = new CategoriasModel();
         $categorias->NombreCategoria = $request["NombreCategoria"];
         $categorias->Descripcion =  $request["Descripcion"];
@@ -69,7 +70,7 @@ class CategoriasController extends Controller
      */
     public function edit($id)
     {
-        $categoriaReg = CategoriasModel::findOrFail($id);   //Hacemos una consulta en base a un id.
+        $categoriaReg = CategoriasModel::findOrFail($id); // Hacemos una consulta en base a un id.
         return view('Categories.edit', compact('categoriaReg'));
     }
 
@@ -82,8 +83,7 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $categoriaRequest =  request()->except(['_token', '_method']);
+        $categoriaRequest = request()->except(['_token', '_method']);
         CategoriasModel::where('id', '=', $id)->update($categoriaRequest);
         return redirect('categorias')->with('Mensaje', 'Actualización realizada al registro');
     }
@@ -96,7 +96,6 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        //
         CategoriasModel::destroy($id);
         return redirect('categorias')->with('Mensaje', 'Registro eliminado');
     }

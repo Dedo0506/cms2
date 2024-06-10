@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EtiquetasModel;
+use Etiquetas;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class EtiquetasController extends Controller
 {
+    use WithPagination;
+    protected $paginationTheme = "bootstrap";
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +20,8 @@ class EtiquetasController extends Controller
     public function index()
     {
         //
-        $etiqueta = DB::SELECT("SELECT * FROM etiquetas");
-        return view('Etiquetas.index', array('etiqueta'=>$etiqueta));
+        $etiquetas = EtiquetasModel::latest('id')->paginate(5);
+        return view('Etiquetas.index', compact('etiquetas'));
     }
 
     /**
@@ -40,12 +44,13 @@ class EtiquetasController extends Controller
     public function store(Request $request)
     {
         //
+        $user = auth()->user();
         $etiqueta = new EtiquetasModel(); //Creamos la variable que tenga el modelo de etiqueta.
 
         $etiqueta->nombreEtiqueta = $request["nombreEtiqueta"]; //TODO revisar si esto hace referencia al DOM
         $etiqueta->descripcion =  $request["descripcion"];
         $etiqueta->fechaCreacion =  date("Y-m-d H:i:s");
-        $etiqueta->UsuarioCreador = "Sebas";
+        $etiqueta->UsuarioCreador = $user->name;
 
         $etiqueta->save();      //Guardamos el registro.
         return redirect()->route('etiquetas.index')->with('Mensaje', 'Registro creado');

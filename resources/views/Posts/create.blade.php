@@ -8,50 +8,56 @@
 
 @section('content')
 
-<div class="container mt-5">
-    <form class="row g-3 my-5" action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="col-12" id="PostContenido">
-            <label for="PostContenido" class="form-label">Contenido del post</label>
-            <textarea type="text" class="form-control" name="PostContenido" id="PostContenido"></textarea>
-        </div>
-        <div id="categoria" class="col-md-6">
-            <label for="id_categoria" class="form-label">Categoria: </label>
-            <select name="categoria" class="form-select">
-                @foreach ($categorias as $categoria)
-                    <option value="{{ $categoria->id }}">{{ $categoria->NombreCategoria }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div id="etiqueta" class="col-md-6">
-            <label for="id_etiqueta" class="form-label">Etiqueta: </label>
-            <select name="etiqueta" class="form-select"> 
-                @foreach ($etiquetas as $etiqueta)
-                    <option value="{{ $etiqueta->id }}">{{ $etiqueta->nombreEtiqueta }}</option>
-                @endforeach
-            </select>
-        </div>            
-        <div id="fechaPublicacion">
-            <label for="fechaPublicacion">Fecha de Publicación:</label>
-            <input type="date" id="fechaPublicacion" name="fechaPublicacion">
-        </div>        
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt- 5">
-            <div>
-                <button class="btn btn-primary" href="{{url('posts')}}">Registrar</button>
+    <div class="container mt-5">
+        <form class="row g-3 my-5" action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="col-12" id="PostContenido">
+                <label for="PostContenido" class="form-label">Contenido del post</label>
+                <textarea type="text" class="form-control" name="PostContenido" id="PostContenido"></textarea>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-4">
-                <a class="btn btn-secondary" href="{{url('posts')}}">Regresar</a>
+            <div id="categoria" class="col-md-4">
+                <label for="id_categoria" class="form-label">Categoria: </label>
+                <select name="categoria" class="form-select">
+                    @foreach ($categorias as $categoria)
+                        <option value="{{ $categoria->id }}">{{ $categoria->NombreCategoria }}</option>
+                    @endforeach
+                </select>
             </div>
-        </div>
-    </form>
 
-   
+            <div id="etiqueta" class="col-md-4">
+                <label for="id_etiqueta" class="form-label">Etiqueta: </label>
+                <select name="etiqueta" class="form-select">
+                    @foreach ($etiquetas as $etiqueta)
+                        <option value="{{ $etiqueta->id }}">{{ $etiqueta->nombreEtiqueta }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div id="fechaPublicacion" class="col-md-4">
+                <label for="fechaPublicacion">Fecha de Publicación:</label>
+                <div class="input-group mt-2">
+                    <input type="date" id="fechaPublicacion" name="fechaPublicacion">
+                </div>
+            </div>
 
-</div>
+            <div class="col-12" id="PostImagen">
+                <label for="PostImagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" name="PostImagen" id="PostImagen"></in>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt- 5">
+                <div>
+                    <button class="btn btn-primary" href="{{ url('posts') }}">Registrar</button>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <a class="btn btn-secondary" href="{{ url('posts') }}">Regresar</a>
+                </div>
+            </div>
+        </form>
 
 
- 
+
+    </div>
+
+
+
 @stop
-

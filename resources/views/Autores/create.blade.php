@@ -4,24 +4,26 @@
 
 @section('accion', 'Crear')
 
+@section('palabra', 'autor')
+
 @section('content')
 
 <div class="container mt-5">
-    <form class="row g-3 my-5" action="{{route('autor.store')}}" method="POST" enctype="multipart/form-data">
+    <form class="row g-3 my-5" action="{{ url('/autor')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="col-12" id="NombreAutor">
+        <div class="col-6" id="NombreAutor">
             <label for="NombreAutor" class="form-label">Nombre del Autor</label>
-            <textarea type="text" class="form-control" name="NombreAutor" id="NombreAutor"></textarea>
+            <input type="text" class="form-control" name="NombreAutor" id="NombreAutor"></textarea>
         </div>
         
-        <div class="col-12" id="Apodo">
-            <label for="Apodo" class="form-label">Apodo del Autor</label>
-            <textarea type="text" class="form-control" name="Apodo" id="Apodo"></textarea>
+        <div class="col-6" id="Apodo">
+            <label for="Apodo" class="form-label">Seudonimo del Autor</label>
+            <input type="text" class="form-control" name="Apodo" id="Apodo"></textarea>
         </div>
 
         <div class="col-12" id="Email">
             <label for="Email" class="form-label">Correo electrónico</label>
-            <textarea type="text" class="form-control" name="Email" id="Email"></textarea>
+            <input type="email" class="form-control" name="Email" id="Email"></textarea>
         </div>
 
         <div class="col-12" id="Biografia">

@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\AutoresModel; 
 use Illuminate\Support\Facades\DB; 
 use Illuminate\Http\Response; 
+use Livewire\WithPagination;
 
 
 class AutoresController extends Controller
 {
+    use WithPagination;
+    protected $paginationTheme = "bootstrap";
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +21,7 @@ class AutoresController extends Controller
     public function index()
     {
         //
-        $autores = DB::SELECT("SELECT * FROM autores"); 
+        $autores = AutoresModel::latest('id')->paginate(5); 
         return view('autores.index', array('autores'=>$autores)); 
 
     }
@@ -64,7 +67,7 @@ class AutoresController extends Controller
 
         $autores->save(); 
 
-        return redirect()->route('autor.index')->with('Mensaje', 'Registro creado'); 
+        return redirect()->route('autores.index')->with('Mensaje', 'Registro creado'); 
 
     }
 

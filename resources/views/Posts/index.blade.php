@@ -7,7 +7,7 @@
 @section('palabra', 'posts')
 
 @section('content')
-    <div >
+    <div>
         <div class="container">
 
             @if (Session::has('Mensaje'))
@@ -15,7 +15,7 @@
             @endif
 
             <div class="col-xs-12 col-md-6 col-lg-4">
-                <a href="{{ url('posts/create') }}"  class="btn btn-secondary btn-lg my-3"> Agregar una nuevo Post </a>
+                <a href="{{ url('posts/create') }}" class="btn btn-secondary btn-lg my-3"> Agregar una nuevo Post </a>
             </div>
 
             <table class="table">
@@ -37,8 +37,8 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>{{ $post->id }}</td>
-                            <td><img class= "card-img-top w-25" src="{{asset($post->PostImagen)}}" alt="imagen"></td>
-                            <td>{{ $post->PostContenido}}</td>
+                            <td><img class= "card-img-top w-25" src="{{ asset($post->PostImagen) }}" alt="imagen"></td>
+                            <td><a href="{{ route('posts.show', $post) }}">{{ $post->PostContenido }}</a></td>
                             <td>{{ $post->FechaCreacion }}</td>
                             <td>{{ $post->FechaPublicacion }}</td>
                             <td>{{ $post->Categorias->NombreCategoria }}</td>
@@ -53,16 +53,15 @@
                                         onclick="return confirm('¿Seguro deseas borrar?');"> Borrar </button>
                                 </form>
                             </td>
-                        </tr>
+                    </tr>
                     @endforeach
 
                 </tbody>
             </table>
-            
-            <ul class="pagination justify-content-center">
-                {{ $posts->links() }}
-            </ul>
-            
+
+            <div class="d-flex justify-content-center">
+                {{ $posts->links('pagination.bootstrap-5') }}
+            </div>
         </div>
     </div>
 @stop
