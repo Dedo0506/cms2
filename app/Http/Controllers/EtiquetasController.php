@@ -48,6 +48,7 @@ class EtiquetasController extends Controller
         $etiqueta->UsuarioCreador = "Sebas";
 
         $etiqueta->save();      //Guardamos el registro.
+        return redirect()->route('etiquetas.index')->with('Mensaje', 'Registro creado');
 
     }
 

@@ -2,7 +2,9 @@
 
 @section('title', 'Post crear')
 
-@section('accion', 'Crear')
+@section('accion', 'Crear nuevo')
+
+@section('palabra', 'posts')
 
 @section('content')
 
@@ -50,6 +52,6 @@
 </div>
 
 
-
+ 
 @stop
 

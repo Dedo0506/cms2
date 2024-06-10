@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaApiController;
 use App\Http\Controllers\EtiquetasApiController;
 use App\Http\Controllers\EstudianteApiController;
+use App\Http\Controllers\UsuarioApiController;
 
 
 /*
@@ -35,3 +36,4 @@ Route::put('/estudiante/{id}',[EstudianteApiController::class, 'update']);
 Route::delete('/estudiante/{id}',[EstudianteApiController::class,'destroy']);
  */
 Route::apiResource('estudiante', App\Http\Controllers\EstudianteApiController::class);
+Route::apiResource('usuarios', App\Http\Controllers\UsuarioApiController::class);

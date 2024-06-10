@@ -15,6 +15,9 @@
             margin: 0;
             padding: 0;
             background-color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .navbar-nav {
@@ -42,19 +45,32 @@
             text-decoration: none;
             color: #333;
         }
+
+        .content {
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
     <div class="navbar-nav">
         <nav>
-            <h1>Lista de @yield('accion')</h1>
+            <h1>@yield('accion') @yield('palabra')</h1>
         </nav>
     </div>
 
-    @yield('content')
+    <div class="content">
+        @yield('content')
+    </div>
 
-    <div class="navbar-nav">
+    <div class="footer navbar-nav">
         <nav>
             <ul>
                 <h3>Equipo:</h3>

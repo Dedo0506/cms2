@@ -4,6 +4,8 @@
 
 @section('accion', '10 más recientes')
 
+@section('palabra', 'posts')
+
 @section('content')
 
 <div >

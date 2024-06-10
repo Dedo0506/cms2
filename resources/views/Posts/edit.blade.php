@@ -4,6 +4,8 @@
 
 @section('accion', 'Editar')
 
+@section('palabra', 'posts')
+
 @section('content')
 
     <div class="container mt-5">

@@ -30,7 +30,6 @@ use App\Http\Controllers\EtiquetasController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AutoresController;  
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,13 +41,15 @@ use App\Http\Controllers\AutoresController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {return view('welcome');});
+
+Route::get('/', [PostController::class, 'welcome'])->name('welcome');
 Route::get('/listarC',function () { return view('listaC'); });
 Route::get('/listarEstudiantes',function () { return view('listaEstudiantes'); });
+Route::get('/listarUsuarios',function () { return view('listaU'); });
 
 Route::resource('/categorias', CategoriasController::class);
 Route::resource('/etiquetas', EtiquetasController::class);
 Route::resource('/posts', PostController::class); 
 Route::resource('/autor', AutoresController::class); 
+
